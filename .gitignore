@@ -1,0 +1,9 @@
+# WordPress user uploads are local content, not source code.
+/uploads/
+/index.php
+
+# OS and editor files.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

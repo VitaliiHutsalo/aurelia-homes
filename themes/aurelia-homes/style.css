@@ -1,0 +1,40 @@
+/*
+Theme Name: Aurelia Homes
+Theme URI: https://example.com/aurelia-homes
+Author: Aurelia Homes
+Description: Custom theme for the Aurelia Homes portfolio project.
+Version: 0.1.0
+Text Domain: aurelia-homes
+*/
+
+:root {
+  color-scheme: light;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  color: #1f2933;
+  background: #f8fafc;
+}
+
+.site-header,
+.site-footer,
+.site-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-branding a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
