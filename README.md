@@ -39,3 +39,15 @@ php -l plugins/aurelia-properties/aurelia-properties.php
 ```
 
 Run `php -l` for every PHP file you change when PHP is available on your PATH.
+
+## Frontend Assets
+
+Vite and Sass are configured inside `themes/aurelia-homes/`. Install the frontend dependencies once, then build assets after changing SCSS or JavaScript:
+
+```powershell
+cd themes/aurelia-homes
+npm install
+npm run build
+```
+
+Source files live in `src/`; compiled assets are written to `dist/` and loaded by the theme when the Vite manifest is present.

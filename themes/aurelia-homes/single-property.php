@@ -65,6 +65,47 @@ while ( have_posts() ) :
 			<?php endif; ?>
 		</div>
 	</article>
+
+	<?php if ( ! is_wp_error( $cities ) && ! empty( $cities ) ) : ?>
+		<?php
+		$related_properties = new WP_Query(
+			array(
+				'post_type'      => 'property',
+				'post_status'    => 'publish',
+				'posts_per_page' => 3,
+				'post__not_in'   => array( $property_id ),
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'property_city',
+						'field'    => 'term_id',
+						'terms'    => (int) $cities[0]->term_id,
+					),
+				),
+			)
+		);
+		?>
+
+		<?php if ( $related_properties->have_posts() ) : ?>
+			<section class="related-properties">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow"><?php echo esc_html( $city ); ?></p>
+						<h2><?php esc_html_e( 'More homes nearby', 'aurelia-homes' ); ?></h2>
+					</div>
+				</div>
+
+				<div class="property-grid">
+					<?php
+					while ( $related_properties->have_posts() ) :
+						$related_properties->the_post();
+						get_template_part( 'template-parts/property', 'card' );
+					endwhile;
+					?>
+				</div>
+			</section>
+			<?php wp_reset_postdata(); ?>
+		<?php endif; ?>
+	<?php endif; ?>
 <?php endwhile; ?>
 <?php
 get_footer();

@@ -23,7 +23,7 @@ php -l themes/aurelia-homes/functions.php
 php -l plugins/aurelia-properties/aurelia-properties.php
 ```
 
-Use the `php -l` command for every changed PHP file when PHP is available on your PATH. Vite and SCSS commands will be added only when the asset pipeline is introduced.
+Use the `php -l` command for every changed PHP file when PHP is available on your PATH. Frontend source lives in `themes/aurelia-homes/src/`; run `npm install` once and `npm run build` from `themes/aurelia-homes/` after changing SCSS or JavaScript.
 
 ## Coding Style & Naming
 

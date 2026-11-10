@@ -1,0 +1,180 @@
+@use 'variables' as *;
+
+:root {
+  color-scheme: light;
+  font-family: $font-body;
+}
+
+body {
+  color: $color-text;
+  background: $color-background;
+}
+
+.site-header {
+  margin-inline: auto;
+  border-bottom: 1px solid $color-border;
+}
+
+.site-branding a,
+.site-navigation a,
+.section-heading > a {
+  color: $color-night;
+}
+
+.site-branding a {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.site-branding .custom-logo-link {
+  display: block;
+  line-height: 0;
+}
+
+.site-branding .custom-logo {
+  display: block;
+  width: auto;
+  max-width: min(180px, 40vw);
+  height: 52px;
+  object-fit: contain;
+}
+
+.site-navigation a {
+  position: relative;
+}
+
+.site-navigation a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.4rem;
+  left: 0;
+  height: 1px;
+  background: $color-gold;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.site-navigation a:hover::after,
+.site-navigation a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero {
+  margin-top: 1.5rem;
+  padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+  border: 1px solid $color-border;
+  border-radius: 1.5rem;
+  background: $color-surface;
+}
+
+.hero h1,
+.archive-header h1,
+.single-property__header h1,
+.contact-page__header h1,
+.section-heading h2 {
+  font-family: $font-display;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.eyebrow,
+.property-card__taxonomy {
+  color: $color-gold-dark;
+}
+
+.button {
+  border: 1px solid $color-night;
+  background: $color-night;
+  color: $color-background;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: $color-gold;
+  background: $color-gold;
+  color: $color-night;
+  transform: translateY(-1px);
+}
+
+.property-filters,
+.contact-form,
+.property-facts {
+  border-color: $color-border;
+  background: $color-surface;
+  box-shadow: 0 10px 30px rgb(23 23 28 / 4%);
+}
+
+.property-filters input,
+.property-filters select,
+.contact-form input,
+.contact-form textarea {
+  border-color: $color-border;
+  background: $color-background;
+  color: $color-text;
+}
+
+.property-card {
+  border-color: $color-border;
+  background: $color-background;
+  box-shadow: 0 14px 34px rgb(23 23 28 / 6%);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.property-card:hover {
+  box-shadow: 0 18px 42px rgb(23 23 28 / 12%);
+  transform: translateY(-3px);
+}
+
+.property-card__image,
+.single-property__image {
+  background: $color-surface-strong;
+}
+
+.property-card__price,
+.single-property__price {
+  color: $color-gold-dark;
+}
+
+.property-card__details,
+.property-facts dt,
+.single-property__back a,
+.property-filters__actions a {
+  color: $color-text-muted;
+}
+
+.site-footer {
+  max-width: none;
+  margin-top: 3rem;
+  padding: 2rem max(1.5rem, calc((100% - 1120px) / 2));
+  background: $color-night;
+  color: $color-surface;
+}
+
+.site-footer p {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.form-notice--success {
+  background: #e2ede4;
+  color: #315639;
+}
+
+.form-notice--error {
+  background: #f7e7e3;
+  color: #853e32;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid $color-gold;
+  outline-offset: 3px;
+}

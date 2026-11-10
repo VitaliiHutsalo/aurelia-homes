@@ -4,6 +4,7 @@
 /plugins/index.php
 /themes/index.php
 /themes/twentytwenty*/
+/themes/aurelia-homes/node_modules/
 
 # OS and editor files.
 .DS_Store

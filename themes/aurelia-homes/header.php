@@ -9,9 +9,13 @@
 <?php wp_body_open(); ?>
 <header class="site-header">
 	<div class="site-branding">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<?php bloginfo( 'name' ); ?>
-		</a>
+		<?php if ( has_custom_logo() ) : ?>
+			<?php the_custom_logo(); ?>
+		<?php else : ?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<?php bloginfo( 'name' ); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 	<?php
 	$properties_url = get_post_type_archive_link( 'property' );
