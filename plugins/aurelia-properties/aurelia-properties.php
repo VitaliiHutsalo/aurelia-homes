@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Aurelia Properties
  * Description: Property data and business logic for Aurelia Homes.
- * Version: 0.1.0
+ * Version: 0.2.0
  * Text Domain: aurelia-properties
  *
  * @package AureliaProperties
@@ -71,7 +71,7 @@ add_action(
 	static function (): void {
 		add_meta_box(
 			'aurelia-property-details',
-			__( 'Property Details', 'aurelia-properties' ),
+			__( 'Listing details', 'aurelia-properties' ),
 			static function ( WP_Post $post ): void {
 				wp_nonce_field( 'aurelia_save_property_details', 'aurelia_property_details_nonce' );
 
@@ -89,7 +89,8 @@ add_action(
 				$bathrooms      = get_post_meta( $post->ID, '_aurelia_property_bathrooms', true );
 				$is_featured = '1' === get_post_meta( $post->ID, '_aurelia_property_is_featured', true );
 				?>
-				<table class="form-table" role="presentation">
+				<p class="aurelia-property-details__intro"><?php esc_html_e( 'Add the key facts buyers need to compare this home.', 'aurelia-properties' ); ?></p>
+				<table class="form-table aurelia-property-details__table" role="presentation">
 					<tr>
 						<th scope="row"><label for="aurelia-property-city"><?php esc_html_e( 'City', 'aurelia-properties' ); ?></label></th>
 						<td>
@@ -144,6 +145,89 @@ add_action(
 			'normal',
 			'high'
 		);
+	}
+);
+
+add_action(
+	'admin_enqueue_scripts',
+	static function (): void {
+		$screen = get_current_screen();
+
+		$is_property_screen = $screen && (
+			'property' === $screen->post_type ||
+			in_array( $screen->taxonomy ?? '', array( 'property_city', 'property_type' ), true )
+		);
+
+		if ( ! $is_property_screen ) {
+			return;
+		}
+
+		$stylesheet_path = plugin_dir_path( __FILE__ ) . 'assets/css/admin.css';
+
+		wp_enqueue_style(
+			'aurelia-properties-admin',
+			plugins_url( 'assets/css/admin.css', __FILE__ ),
+			array(),
+			file_exists( $stylesheet_path ) ? (string) filemtime( $stylesheet_path ) : '0.2.0'
+		);
+	}
+);
+
+add_filter(
+	'manage_property_posts_columns',
+	static function ( array $columns ): array {
+		$columns['property_price']    = __( 'Price', 'aurelia-properties' );
+		$columns['property_featured'] = __( 'Featured', 'aurelia-properties' );
+
+		return $columns;
+	}
+);
+
+add_action(
+	'manage_property_posts_custom_column',
+	static function ( string $column_name, int $post_id ): void {
+		if ( 'property_price' === $column_name ) {
+			$price = get_post_meta( $post_id, '_aurelia_property_price', true );
+
+			if ( '' !== $price && is_numeric( $price ) ) {
+				echo esc_html( '$' . number_format_i18n( (float) $price, 0 ) );
+			}
+		}
+
+		if ( 'property_featured' === $column_name ) {
+			$is_featured = '1' === get_post_meta( $post_id, '_aurelia_property_is_featured', true );
+
+			if ( $is_featured ) {
+				echo '<span class="aurelia-featured-badge">' . esc_html__( 'Featured', 'aurelia-properties' ) . '</span>';
+			} else {
+				echo '<span class="aurelia-muted-value">' . esc_html__( '—', 'aurelia-properties' ) . '</span>';
+			}
+		}
+	},
+	10,
+	2
+);
+
+add_filter(
+	'manage_edit-property_sortable_columns',
+	static function ( array $columns ): array {
+		$columns['property_price'] = 'property_price';
+
+		return $columns;
+	}
+);
+
+add_action(
+	'pre_get_posts',
+	static function ( WP_Query $query ): void {
+		if ( ! is_admin() || ! $query->is_main_query() || 'property' !== $query->get( 'post_type' ) ) {
+			return;
+		}
+
+		if ( 'property_price' === $query->get( 'orderby' ) ) {
+			$query->set( 'meta_key', '_aurelia_property_price' );
+			$query->set( 'orderby', 'meta_value_num' );
+		}
 	}
 );
 

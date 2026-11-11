@@ -1,0 +1,61 @@
+/* Keep the Property editor close to the native WordPress admin interface. */
+body.post-type-property #aurelia-property-details .inside {
+  margin: 0;
+  padding: 12px;
+}
+
+.aurelia-property-details__intro {
+  margin: 0 0 12px;
+  color: #50575e;
+}
+
+.aurelia-property-details__table th {
+  width: 150px;
+}
+
+.aurelia-property-details__table input[type='number'],
+.aurelia-property-details__table select {
+  min-width: 220px;
+}
+
+.aurelia-property-details__table .description {
+  color: #646970;
+}
+
+.widefat .column-property_price {
+  width: 12%;
+}
+
+.widefat .column-property_featured {
+  width: 11%;
+}
+
+.aurelia-featured-badge {
+  color: #2271b1;
+  font-weight: 600;
+}
+
+.aurelia-muted-value {
+  color: #8c8f94;
+}
+
+/* Slugs are generated automatically; they remain available in the database. */
+body.taxonomy-property_city .term-slug-wrap,
+body.taxonomy-property_city .column-slug,
+body.taxonomy-property_type .term-slug-wrap,
+body.taxonomy-property_type .column-slug,
+body.taxonomy-property_city .term-description-wrap,
+body.taxonomy-property_city .column-description,
+body.taxonomy-property_type .term-description-wrap,
+body.taxonomy-property_type .column-description {
+  display: none;
+}
+
+@media screen and (max-width: 782px) {
+  .aurelia-property-details__table th,
+  .aurelia-property-details__table td {
+    display: block;
+    width: auto;
+    padding: 8px 0;
+  }
+}
