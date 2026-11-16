@@ -2,6 +2,18 @@
 
 A fictional real estate portfolio website built with WordPress. This repository contains only the custom code from the LocalWP site's `wp-content` directory; WordPress core, the database, and uploads are not versioned.
 
+## Preview
+
+| Homepage | Property catalogue |
+| --- | --- |
+| ![Aurelia Homes homepage](docs/screenshots/home-hero.png) | ![Property catalogue with filters](docs/screenshots/property-catalogue-filters.png) |
+
+| Property cards | Property details |
+| --- | --- |
+| ![Property cards](docs/screenshots/property-catalogue-cards.png) | ![Property details](docs/screenshots/property-detail.png) |
+
+![Custom WordPress property editor](docs/screenshots/property-editor.png)
+
 ## Stack
 
 - WordPress with a custom classic PHP theme
