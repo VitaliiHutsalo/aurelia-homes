@@ -24,7 +24,7 @@ body {
 .site-content {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 
 .site-header {
@@ -57,7 +57,7 @@ body {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 0.98;
 }
 
@@ -98,13 +98,9 @@ body {
   font-weight: 700;
 }
 
-.archive-header {
-  margin: 2rem 0 3rem;
-}
-
 .archive-header h1 {
   margin: 0;
-  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .property-filters {
